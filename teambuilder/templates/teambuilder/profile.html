@@ -1,0 +1,10 @@
+{% extends "teambuilder/layout.html" %}
+
+{% block title %} {{user.username}} - Poketeams {% endblock %}
+
+{% block body %}
+    <h2>{{user.username}}</h2>
+
+    <img height="250" width="250" src="https://pokeres.bastionbot.org/images/pokemon/{{user.favorite_pokemon.number}}.png">
+
+{% endblock %}

@@ -30,7 +30,7 @@ def login_view(request):
         return render(request, "teambuilder/login.html")
 
 
-def register(request):
+def register(request): #use a Django form in order to validate fields
     if request.method == "POST":
         username = request.POST["username"]
         email = request.POST["email"]
@@ -61,6 +61,19 @@ def register(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
+
+
+def profile(request, username):
+    try:
+        user = User.objects.get(username=username)
+        return render(request, "teambuilder/profile.html", {
+            "user": user
+        })
+    except User.DoesNotExist:
+        return render(request, "teambuilder/error.html", {
+            "message": "User not found"
+        })
+
 
 def get_pokemon(number):
     try:
