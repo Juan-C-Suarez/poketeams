@@ -5,8 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 #import json
-
-#from .models import (models)
+from .models import User, Pokemon, Team, Team_member, Comment
 
 def index(request):
     return render(request, "teambuilder/index.html")
@@ -35,6 +34,7 @@ def register(request):
     if request.method == "POST":
         username = request.POST["username"]
         email = request.POST["email"]
+        fav_pkmn = get_pokemon(request.POST["fav_pkmn"])
 
         # Ensure password matches confirmation
         password = request.POST["password"]
@@ -47,6 +47,7 @@ def register(request):
         # Attempt to create new user
         try:
             user = User.objects.create_user(username, email, password)
+            user.favorite_pokemon = fav_pkmn
             user.save()
         except IntegrityError:
             return render(request, "teambuilder/register.html", {
@@ -60,3 +61,11 @@ def register(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
+
+def get_pokemon(number):
+    try:
+        pokemon = Pokemon.objects.get(number=number)
+    except Pokemon.DoesNotExist:
+        pokemon = Pokemon(number=number)
+        pokemon.save()
+    return pokemon
