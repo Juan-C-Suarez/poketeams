@@ -35,11 +35,16 @@ document.addEventListener('DOMContentLoaded', function(){
         moveSelector2.style.display = 'block';
         moveSelector3.style.display = 'block';
         moveSelector4.style.display = 'block';
+        abilitySelector.required = true;
+        natureSelector1.style.display = true;
+        moveSelector1.style.display = true;
+        moveSelector2.style.display = true;
+        moveSelector3.style.display = true;
+        moveSelector4.style.display = true;
         document.querySelector('#move-title1').style.display = 'block';
         fetch(`https://pokeapi.co/api/v2/pokemon/${speciesSelector1.value}`)
         .then(response => response.json())
-        .then(result => {
-            abilitySelector.value = "";
+        .then(result => {  
             while (abilitySelector.firstChild) {
                 abilitySelector.removeChild(abilitySelector.lastChild);
             }
@@ -49,12 +54,44 @@ document.addEventListener('DOMContentLoaded', function(){
             defaultOption.disabled = true;
             defaultOption.innerHTML = 'Choose an Ability';
             abilitySelector.append(defaultOption);
+            abilitySelector.value = "";
             result.abilities.forEach(ability => {
                 let option = document.createElement('option');
                 option.value = ability.ability.name;
                 option.innerHTML = ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1);
                 abilitySelector.append(option);
             });
+
+            let defaultMove = document.createElement('option');
+            defaultMove.selected = true;
+            defaultMove.value = "";
+            defaultMove.disabled = true;
+            defaultMove.innerHTML = 'Choose a Move';
+            
+            while (moveSelector1.firstChild) {
+                moveSelector1.removeChild(moveSelector1.lastChild);
+            }
+            moveSelector1.append(defaultMove);
+            moveSelector1.value = "";
+            
+            while (moveSelector2.firstChild) {
+                moveSelector2.removeChild(moveSelector2.lastChild);
+            }
+            moveSelector2.append(defaultMove.cloneNode(true));
+            moveSelector2.value = "";
+            
+            while (moveSelector3.firstChild) {
+                moveSelector3.removeChild(moveSelector3.lastChild);
+            }
+            moveSelector3.append(defaultMove.cloneNode(true));
+            moveSelector3.value = "";
+            
+            while (moveSelector4.firstChild) {
+                moveSelector4.removeChild(moveSelector4.lastChild);
+            }
+            moveSelector4.append(defaultMove.cloneNode(true));
+            moveSelector4.value = "";
+
             result.moves.forEach(move => {
                 let option = document.createElement('option');
                 option.value = move.move.name;
@@ -83,11 +120,16 @@ document.addEventListener('DOMContentLoaded', function(){
         moveSelector2.style.display = 'block';
         moveSelector3.style.display = 'block';
         moveSelector4.style.display = 'block';
+        abilitySelector.required = true;
+        natureSelector1.style.display = true;
+        moveSelector1.style.display = true;
+        moveSelector2.style.display = true;
+        moveSelector3.style.display = true;
+        moveSelector4.style.display = true;
         document.querySelector('#move-title2').style.display = 'block';
         fetch(`https://pokeapi.co/api/v2/pokemon/${speciesSelector2.value}`)
         .then(response => response.json())
-        .then(result => {
-            abilitySelector.value = "";
+        .then(result => {  
             while (abilitySelector.firstChild) {
                 abilitySelector.removeChild(abilitySelector.lastChild);
             }
@@ -97,12 +139,44 @@ document.addEventListener('DOMContentLoaded', function(){
             defaultOption.disabled = true;
             defaultOption.innerHTML = 'Choose an Ability';
             abilitySelector.append(defaultOption);
+            abilitySelector.value = "";
             result.abilities.forEach(ability => {
                 let option = document.createElement('option');
                 option.value = ability.ability.name;
                 option.innerHTML = ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1);
                 abilitySelector.append(option);
             });
+
+            let defaultMove = document.createElement('option');
+            defaultMove.selected = true;
+            defaultMove.value = "";
+            defaultMove.disabled = true;
+            defaultMove.innerHTML = 'Choose a Move';
+            
+            while (moveSelector1.firstChild) {
+                moveSelector1.removeChild(moveSelector1.lastChild);
+            }
+            moveSelector1.append(defaultMove);
+            moveSelector1.value = "";
+            
+            while (moveSelector2.firstChild) {
+                moveSelector2.removeChild(moveSelector2.lastChild);
+            }
+            moveSelector2.append(defaultMove.cloneNode(true));
+            moveSelector2.value = "";
+            
+            while (moveSelector3.firstChild) {
+                moveSelector3.removeChild(moveSelector3.lastChild);
+            }
+            moveSelector3.append(defaultMove.cloneNode(true));
+            moveSelector3.value = "";
+            
+            while (moveSelector4.firstChild) {
+                moveSelector4.removeChild(moveSelector4.lastChild);
+            }
+            moveSelector4.append(defaultMove.cloneNode(true));
+            moveSelector4.value = "";
+
             result.moves.forEach(move => {
                 let option = document.createElement('option');
                 option.value = move.move.name;
@@ -121,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function(){
         let moveSelector2 = document.querySelector('#move3-2');
         let moveSelector3 = document.querySelector('#move3-3');
         let moveSelector4 = document.querySelector('#move3-4');
-        let image = document.querySelector('#img1');
+        let image = document.querySelector('#img3');
         image.srcset = `https://pokeres.bastionbot.org/images/pokemon/${speciesSelector3.value}.png`;
         image.style.display = 'block';
         abilitySelector.style.display = 'block';
@@ -131,11 +205,16 @@ document.addEventListener('DOMContentLoaded', function(){
         moveSelector2.style.display = 'block';
         moveSelector3.style.display = 'block';
         moveSelector4.style.display = 'block';
+        abilitySelector.required = true;
+        natureSelector1.style.display = true;
+        moveSelector1.style.display = true;
+        moveSelector2.style.display = true;
+        moveSelector3.style.display = true;
+        moveSelector4.style.display = true;
         document.querySelector('#move-title3').style.display = 'block';
         fetch(`https://pokeapi.co/api/v2/pokemon/${speciesSelector3.value}`)
         .then(response => response.json())
-        .then(result => {
-            abilitySelector.value = "";
+        .then(result => {  
             while (abilitySelector.firstChild) {
                 abilitySelector.removeChild(abilitySelector.lastChild);
             }
@@ -145,12 +224,44 @@ document.addEventListener('DOMContentLoaded', function(){
             defaultOption.disabled = true;
             defaultOption.innerHTML = 'Choose an Ability';
             abilitySelector.append(defaultOption);
+            abilitySelector.value = "";
             result.abilities.forEach(ability => {
                 let option = document.createElement('option');
                 option.value = ability.ability.name;
                 option.innerHTML = ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1);
                 abilitySelector.append(option);
             });
+
+            let defaultMove = document.createElement('option');
+            defaultMove.selected = true;
+            defaultMove.value = "";
+            defaultMove.disabled = true;
+            defaultMove.innerHTML = 'Choose a Move';
+            
+            while (moveSelector1.firstChild) {
+                moveSelector1.removeChild(moveSelector1.lastChild);
+            }
+            moveSelector1.append(defaultMove);
+            moveSelector1.value = "";
+            
+            while (moveSelector2.firstChild) {
+                moveSelector2.removeChild(moveSelector2.lastChild);
+            }
+            moveSelector2.append(defaultMove.cloneNode(true));
+            moveSelector2.value = "";
+            
+            while (moveSelector3.firstChild) {
+                moveSelector3.removeChild(moveSelector3.lastChild);
+            }
+            moveSelector3.append(defaultMove.cloneNode(true));
+            moveSelector3.value = "";
+            
+            while (moveSelector4.firstChild) {
+                moveSelector4.removeChild(moveSelector4.lastChild);
+            }
+            moveSelector4.append(defaultMove.cloneNode(true));
+            moveSelector4.value = "";
+
             result.moves.forEach(move => {
                 let option = document.createElement('option');
                 option.value = move.move.name;
@@ -179,11 +290,16 @@ document.addEventListener('DOMContentLoaded', function(){
         moveSelector2.style.display = 'block';
         moveSelector3.style.display = 'block';
         moveSelector4.style.display = 'block';
+        abilitySelector.required = true;
+        natureSelector1.style.display = true;
+        moveSelector1.style.display = true;
+        moveSelector2.style.display = true;
+        moveSelector3.style.display = true;
+        moveSelector4.style.display = true;
         document.querySelector('#move-title4').style.display = 'block';
         fetch(`https://pokeapi.co/api/v2/pokemon/${speciesSelector4.value}`)
         .then(response => response.json())
-        .then(result => {
-            abilitySelector.value = "";
+        .then(result => {  
             while (abilitySelector.firstChild) {
                 abilitySelector.removeChild(abilitySelector.lastChild);
             }
@@ -193,12 +309,44 @@ document.addEventListener('DOMContentLoaded', function(){
             defaultOption.disabled = true;
             defaultOption.innerHTML = 'Choose an Ability';
             abilitySelector.append(defaultOption);
+            abilitySelector.value = "";
             result.abilities.forEach(ability => {
                 let option = document.createElement('option');
                 option.value = ability.ability.name;
                 option.innerHTML = ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1);
                 abilitySelector.append(option);
             });
+
+            let defaultMove = document.createElement('option');
+            defaultMove.selected = true;
+            defaultMove.value = "";
+            defaultMove.disabled = true;
+            defaultMove.innerHTML = 'Choose a Move';
+            
+            while (moveSelector1.firstChild) {
+                moveSelector1.removeChild(moveSelector1.lastChild);
+            }
+            moveSelector1.append(defaultMove);
+            moveSelector1.value = "";
+            
+            while (moveSelector2.firstChild) {
+                moveSelector2.removeChild(moveSelector2.lastChild);
+            }
+            moveSelector2.append(defaultMove.cloneNode(true));
+            moveSelector2.value = "";
+            
+            while (moveSelector3.firstChild) {
+                moveSelector3.removeChild(moveSelector3.lastChild);
+            }
+            moveSelector3.append(defaultMove.cloneNode(true));
+            moveSelector3.value = "";
+            
+            while (moveSelector4.firstChild) {
+                moveSelector4.removeChild(moveSelector4.lastChild);
+            }
+            moveSelector4.append(defaultMove.cloneNode(true));
+            moveSelector4.value = "";
+
             result.moves.forEach(move => {
                 let option = document.createElement('option');
                 option.value = move.move.name;
@@ -227,11 +375,16 @@ document.addEventListener('DOMContentLoaded', function(){
         moveSelector2.style.display = 'block';
         moveSelector3.style.display = 'block';
         moveSelector4.style.display = 'block';
+        abilitySelector.required = true;
+        natureSelector1.style.display = true;
+        moveSelector1.style.display = true;
+        moveSelector2.style.display = true;
+        moveSelector3.style.display = true;
+        moveSelector4.style.display = true;
         document.querySelector('#move-title5').style.display = 'block';
         fetch(`https://pokeapi.co/api/v2/pokemon/${speciesSelector5.value}`)
         .then(response => response.json())
-        .then(result => {
-            abilitySelector.value = "";
+        .then(result => {  
             while (abilitySelector.firstChild) {
                 abilitySelector.removeChild(abilitySelector.lastChild);
             }
@@ -241,12 +394,44 @@ document.addEventListener('DOMContentLoaded', function(){
             defaultOption.disabled = true;
             defaultOption.innerHTML = 'Choose an Ability';
             abilitySelector.append(defaultOption);
+            abilitySelector.value = "";
             result.abilities.forEach(ability => {
                 let option = document.createElement('option');
                 option.value = ability.ability.name;
                 option.innerHTML = ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1);
                 abilitySelector.append(option);
             });
+
+            let defaultMove = document.createElement('option');
+            defaultMove.selected = true;
+            defaultMove.value = "";
+            defaultMove.disabled = true;
+            defaultMove.innerHTML = 'Choose a Move';
+            
+            while (moveSelector1.firstChild) {
+                moveSelector1.removeChild(moveSelector1.lastChild);
+            }
+            moveSelector1.append(defaultMove);
+            moveSelector1.value = "";
+            
+            while (moveSelector2.firstChild) {
+                moveSelector2.removeChild(moveSelector2.lastChild);
+            }
+            moveSelector2.append(defaultMove.cloneNode(true));
+            moveSelector2.value = "";
+            
+            while (moveSelector3.firstChild) {
+                moveSelector3.removeChild(moveSelector3.lastChild);
+            }
+            moveSelector3.append(defaultMove.cloneNode(true));
+            moveSelector3.value = "";
+            
+            while (moveSelector4.firstChild) {
+                moveSelector4.removeChild(moveSelector4.lastChild);
+            }
+            moveSelector4.append(defaultMove.cloneNode(true));
+            moveSelector4.value = "";
+
             result.moves.forEach(move => {
                 let option = document.createElement('option');
                 option.value = move.move.name;
@@ -275,11 +460,16 @@ document.addEventListener('DOMContentLoaded', function(){
         moveSelector2.style.display = 'block';
         moveSelector3.style.display = 'block';
         moveSelector4.style.display = 'block';
+        abilitySelector.required = true;
+        natureSelector1.style.display = true;
+        moveSelector1.style.display = true;
+        moveSelector2.style.display = true;
+        moveSelector3.style.display = true;
+        moveSelector4.style.display = true;
         document.querySelector('#move-title6').style.display = 'block';
         fetch(`https://pokeapi.co/api/v2/pokemon/${speciesSelector6.value}`)
         .then(response => response.json())
-        .then(result => {
-            abilitySelector.value = "";
+        .then(result => {  
             while (abilitySelector.firstChild) {
                 abilitySelector.removeChild(abilitySelector.lastChild);
             }
@@ -289,12 +479,44 @@ document.addEventListener('DOMContentLoaded', function(){
             defaultOption.disabled = true;
             defaultOption.innerHTML = 'Choose an Ability';
             abilitySelector.append(defaultOption);
+            abilitySelector.value = "";
             result.abilities.forEach(ability => {
                 let option = document.createElement('option');
                 option.value = ability.ability.name;
                 option.innerHTML = ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1);
                 abilitySelector.append(option);
             });
+
+            let defaultMove = document.createElement('option');
+            defaultMove.selected = true;
+            defaultMove.value = "";
+            defaultMove.disabled = true;
+            defaultMove.innerHTML = 'Choose a Move';
+            
+            while (moveSelector1.firstChild) {
+                moveSelector1.removeChild(moveSelector1.lastChild);
+            }
+            moveSelector1.append(defaultMove);
+            moveSelector1.value = "";
+            
+            while (moveSelector2.firstChild) {
+                moveSelector2.removeChild(moveSelector2.lastChild);
+            }
+            moveSelector2.append(defaultMove.cloneNode(true));
+            moveSelector2.value = "";
+            
+            while (moveSelector3.firstChild) {
+                moveSelector3.removeChild(moveSelector3.lastChild);
+            }
+            moveSelector3.append(defaultMove.cloneNode(true));
+            moveSelector3.value = "";
+            
+            while (moveSelector4.firstChild) {
+                moveSelector4.removeChild(moveSelector4.lastChild);
+            }
+            moveSelector4.append(defaultMove.cloneNode(true));
+            moveSelector4.value = "";
+
             result.moves.forEach(move => {
                 let option = document.createElement('option');
                 option.value = move.move.name;
