@@ -23,13 +23,13 @@ class Team(models.Model):
 class Team_member(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
     pokemon = models.ForeignKey(Pokemon, on_delete=models.CASCADE)
-    ability = models.IntegerField(validators=[MaxValueValidator(293), MinValueValidator(1)])
-    held_item = models.IntegerField(validators=[MaxValueValidator(1018), MinValueValidator(1)]) #Berries from 1 to 64, items form 65 to 1018
-    nature = models.IntegerField(validators=[MaxValueValidator(25), MinValueValidator(1)])
-    move1 = models.IntegerField(validators=[MaxValueValidator(746), MinValueValidator(1)])
-    move2 = models.IntegerField(validators=[MaxValueValidator(746), MinValueValidator(1)])
-    move3 = models.IntegerField(validators=[MaxValueValidator(746), MinValueValidator(1)])
-    move4 = models.IntegerField(validators=[MaxValueValidator(746), MinValueValidator(1)])
+    ability = models.CharField(max_length=50)
+    held_item = models.CharField(max_length=50)
+    nature = models.CharField(max_length=50)
+    move1 = models.CharField(max_length=50)
+    move2 = models.CharField(max_length=50)
+    move3 = models.CharField(max_length=50)
+    move4 = models.CharField(max_length=50)
 
 class Comment(models.Model):
     id = models.AutoField(primary_key=True)

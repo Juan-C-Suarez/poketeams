@@ -4,8 +4,10 @@ from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from django import forms
 #import json
 from .models import User, Pokemon, Team, Team_member, Comment
+
 
 def index(request):
     return render(request, "teambuilder/index.html")
@@ -73,6 +75,13 @@ def profile(request, username):
         return render(request, "teambuilder/error.html", {
             "message": "User not found"
         })
+
+
+def teambuilder(request):
+    if request.user.is_authenticated:
+        return render(request, "teambuilder/teambuilder.html")
+    else:
+        return HttpResponseRedirect(reverse("index"))
 
 
 def get_pokemon(number):

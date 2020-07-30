@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function(){
-    let favorite_pokemon = document.querySelector('#favorite_pokemon');
-    favorite_pokemon.addEventListener('change', () => {
+    let favoritePokemon = document.querySelector('#favorite_pokemon');
+    favoritePokemon.addEventListener('change', () => {
         let image = document.querySelector('img');
-        image.srcset = `https://pokeres.bastionbot.org/images/pokemon/${favorite_pokemon.value}.png`;
+        image.srcset = `https://pokeres.bastionbot.org/images/pokemon/${favoritePokemon.value}.png`;
         image.style.display = 'block';
     });
 
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function(){
             let option = document.createElement('option');
             option.value = `${i+1}`;
             option.innerHTML = result.results[i].name.charAt(0).toUpperCase() + result.results[i].name.slice(1);
-            favorite_pokemon.append(option);
+            favoritePokemon.append(option);
         }
     });
 });

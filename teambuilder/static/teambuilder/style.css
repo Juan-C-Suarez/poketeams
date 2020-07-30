@@ -1,0 +1,17 @@
+.selector-image{
+    display: none;
+    margin: 10px;
+}
+
+.selector-image, #move-title1, #move-title2, #move-title3, #move-title4, #move-title5, #move-title6{
+    display: none;
+    margin-top: 10px;
+}
+
+#pkmn1, #pkmn2, #pkmn3, #pkmn4, #pkmn5, #pkmn6{
+    border: solid;
+    border-width: 1px;
+    border-color: lightgray;
+    border-radius: 8px;
+    padding: 20px;
+}

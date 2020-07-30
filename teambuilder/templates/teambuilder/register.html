@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %} Register - Poketeams{% endblock %}
+{% block title %} Register - Poketeams {% endblock %}
 
 {% block script %}
     <script src="{% static 'teambuilder/register.js' %}"></script>
@@ -15,24 +15,24 @@
         <div>{{ message }}</div>
     {% endif %}
 
-    <form action="{% url 'register' %}" method="post">
+    <form action="{% url 'register' %}" method="post" id="registration-form">
         {% csrf_token %}
         <div class="form-group">
-            <input class="form-control" autofocus type="text" name="username" placeholder="Username">
+            <input class="form-control" autofocus type="text" name="username" placeholder="Username" id="username-field" required>
         </div>
         <div class="form-group">
-            <input class="form-control" type="email" name="email" placeholder="Email Address">
+            <input class="form-control" type="email" name="email" placeholder="Email Address" id="email-field" required>
         </div>
         <div class="form-group">
-            <input class="form-control" type="password" name="password" placeholder="Password">
+            <input class="form-control" type="password" name="password" placeholder="Password" id="password1-field" required>
         </div>
         <div class="form-group">
-            <input class="form-control" type="password" name="confirmation" placeholder="Confirm Password">
+            <input class="form-control" type="password" name="confirmation" placeholder="Confirm Password" id="password2-field" required>
         </div>
         <div> Choose your favorite Pokemon as your avatar! </div>
         <div class="form-group">
-            <select class="form-control" name="fav_pkmn" placeholder="Favorite Pokemon" id="favorite_pokemon">
-                <option disabled selected>Favorite Pokemon</option>
+            <select class="form-control" name="fav_pkmn" placeholder="Favorite Pokemon" id="favorite_pokemon" required>
+                <option disabled selected value="">Favorite Pokemon</option>
             </select>
         </div>
         <input class="btn btn-primary" type="submit" value="Register">
@@ -41,6 +41,6 @@
         Already have an account? <a href="{% url 'login' %}">Log In here.</a>
     </p>
 
-    <img height="250" width="250" style="display:none;">
+    <img height="250" width="250" class="selector-image">
 
 {% endblock %}

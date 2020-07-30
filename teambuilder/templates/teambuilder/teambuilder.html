@@ -1,0 +1,239 @@
+{% extends "teambuilder/layout.html" %}
+
+{% load static %}
+
+{% block title %} Teambuilder- Poketeams {% endblock %}
+
+{% block script %}
+    <script src="{% static 'teambuilder/teambuilder.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2>Build your team!</h2>
+
+        <form action="#" method="post" id="teambuilder-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <input class="form-control" autofocus type="text" name="team-name" placeholder="Team Name"
+                    id="team-name-field" required>
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" autofocus type="text" name="strategy" placeholder="Describe your strategy." id="strategy-field"></textarea>
+            </div>
+            <div> Choose the six Pokemon that make up your team. Choose their ability, nature, held item and moves. </div>
+            <div id="pkmn1" class="form-group">
+                <select class="form-control" name="species1" id="species1" required>
+                    <option disabled selected value="">Choose a Pokemon</option>
+                </select>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12">
+                        <img height="250" width="250" id="img1" class="selector-image">
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                        <select class="form-control" name="ability1" id="ability1" style="display:none;" required>
+                            <option disabled selected value="">Choose an Ability</option>
+                        </select>
+                        <select class="form-control" name="nature1" id="nature1" style="display:none;" required>
+                            <option disabled selected value="">Choose a Nature</option>
+                        </select>
+                        <select class="form-control" name="item1" id="item1" style="display:none;">
+                            <option disabled selected value="">Choose a Held Item</option>
+                        </select>
+                        <h5 id="move-title1"> Moves </h5>
+                        <select class="form-control" name="move1-1" id="move1-1" style="display:none;" required>
+                            <option disabled selected value="">Choose a Move</option>
+                        </select>
+                        <select class="form-control" name="move1-2" id="move1-2" style="display:none;" required>
+                            <option disabled selected value="">Choose a Move</option>
+                        </select>
+                        <select class="form-control" name="move1-3" id="move1-3" style="display:none;" required>
+                            <option disabled selected value="">Choose a Move</option>
+                        </select>
+                        <select class="form-control" name="move1-4" id="move1-4" style="display:none;" required>
+                            <option disabled selected value="">Choose a Move</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div id="pkmn2" class="form-group">
+                <select class="form-control" name="species2" id="species2" required>
+                    <option disabled selected value="">Choose a Pokemon</option>
+                </select>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12">
+                        <img height="250" width="250" id="img2" class="selector-image">
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                        <select class="form-control" name="ability2" id="ability2" style="display:none;" required>
+                            <option disabled selected value="">Choose an Ability</option>
+                        </select>
+                        <select class="form-control" name="nature2" id="nature2" style="display:none;" required>
+                            <option disabled selected value="">Choose a Nature</option>
+                        </select>
+                        <select class="form-control" name="item2" id="item2" style="display:none;">
+                            <option disabled selected value="">Choose a Held Item</option>
+                        </select>
+                        <h5 id="move-title2"> Moves </h5>
+                        <select class="form-control" name="move2-1" id="move2-1" style="display:none;" required>
+                            <option disabled selected value="">Choose a Move</option>
+                        </select>
+                        <select class="form-control" name="move2-2" id="move2-2" style="display:none;" required>
+                            <option disabled selected value="">Choose a Move</option>
+                        </select>
+                        <select class="form-control" name="move2-3" id="move2-3" style="display:none;" required>
+                            <option disabled selected value="">Choose a Move</option>
+                        </select>
+                        <select class="form-control" name="move2-4" id="move2-4" style="display:none;" required>
+                            <option disabled selected value="">Choose a Move</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div id="pkmn3" class="form-group">
+                <select class="form-control" name="species3" id="species3" required>
+                    <option disabled selected value="">Choose a Pokemon</option>
+                </select>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12">
+                        <img height="250" width="250" id="img3" class="selector-image">
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                        <select class="form-control" name="ability3" id="ability3" style="display:none;" required>
+                            <option disabled selected value="">Choose an Ability</option>
+                        </select>
+                        <select class="form-control" name="nature3" id="nature3" style="display:none;" required>
+                            <option disabled selected value="">Choose a Nature</option>
+                        </select>
+                        <select class="form-control" name="item3" id="item3" style="display:none;">
+                            <option disabled selected value="">Choose a Held Item</option>
+                        </select>
+                        <h5 id="move-title3"> Moves </h5>
+                        <select class="form-control" name="move3-1" id="move3-1" style="display:none;" required>
+                            <option disabled selected value="">Choose a Move</option>
+                        </select>
+                        <select class="form-control" name="move3-2" id="move3-2" style="display:none;" required>
+                            <option disabled selected value="">Choose a Move</option>
+                        </select>
+                        <select class="form-control" name="move3-3" id="move3-3" style="display:none;" required>
+                            <option disabled selected value="">Choose a Move</option>
+                        </select>
+                        <select class="form-control" name="move3-4" id="move3-4" style="display:none;" required>
+                            <option disabled selected value="">Choose a Move</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div id="pkmn4" class="form-group">
+                <select class="form-control" name="species4" id="species4" required>
+                    <option disabled selected value="">Choose a Pokemon</option>
+                </select>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12">
+                        <img height="250" width="250" id="img4" class="selector-image">
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                        <select class="form-control" name="ability4" id="ability4" style="display:none;" required>
+                            <option disabled selected value="">Choose an Ability</option>
+                        </select>
+                        <select class="form-control" name="nature4" id="nature4" style="display:none;" required>
+                            <option disabled selected value="">Choose a Nature</option>
+                        </select>
+                        <select class="form-control" name="item4" id="item4" style="display:none;">
+                            <option disabled selected value="">Choose a Held Item</option>
+                        </select>
+                        <h5 id="move-title4"> Moves </h5>
+                        <select class="form-control" name="move4-1" id="move4-1" style="display:none;" required>
+                            <option disabled selected value="">Choose a Move</option>
+                        </select>
+                        <select class="form-control" name="move4-2" id="move4-2" style="display:none;" required>
+                            <option disabled selected value="">Choose a Move</option>
+                        </select>
+                        <select class="form-control" name="move4-3" id="move4-3" style="display:none;" required>
+                            <option disabled selected value="">Choose a Move</option>
+                        </select>
+                        <select class="form-control" name="move4-4" id="move4-4" style="display:none;" required>
+                            <option disabled selected value="">Choose a Move</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div id="pkmn5" class="form-group">
+                <select class="form-control" name="species5" id="species5" required>
+                    <option disabled selected value="">Choose a Pokemon</option>
+                </select>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12">
+                        <img height="250" width="250" id="img5" class="selector-image">
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                        <select class="form-control" name="ability5" id="ability5" style="display:none;" required>
+                            <option disabled selected value="">Choose an Ability</option>
+                        </select>
+                        <select class="form-control" name="nature5" id="nature5" style="display:none;" required>
+                            <option disabled selected value="">Choose a Nature</option>
+                        </select>
+                        <select class="form-control" name="item5" id="item5" style="display:none;">
+                            <option disabled selected value="">Choose a Held Item</option>
+                        </select>
+                        <h5 id="move-title5"> Moves </h5>
+                        <select class="form-control" name="move5-1" id="move5-1" style="display:none;" required>
+                            <option disabled selected value="">Choose a Move</option>
+                        </select>
+                        <select class="form-control" name="move5-2" id="move5-2" style="display:none;" required>
+                            <option disabled selected value="">Choose a Move</option>
+                        </select>
+                        <select class="form-control" name="move5-3" id="move5-3" style="display:none;" required>
+                            <option disabled selected value="">Choose a Move</option>
+                        </select>
+                        <select class="form-control" name="move5-4" id="move5-4" style="display:none;" required>
+                            <option disabled selected value="">Choose a Move</option>
+                        </select>
+                        <select class="form-control" name="move5-4" id="move5-4" style="display:none;" required>
+                            <option disabled selected value="">Choose a Move</option>
+                        </select>
+                        <select class="form-control" name="move5-4" id="move5-4" style="display:none;" required>
+                            <option disabled selected value="">Choose a Move</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div id="pkmn6" class="form-group">
+                <select class="form-control" name="species6" id="species6" required>
+                    <option disabled selected value="">Choose a Pokemon</option>
+                </select>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12">
+                        <img height="250" width="250" id="img6" class="selector-image">
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                        <select class="form-control" name="ability6" id="ability6" style="display:none;" required>
+                            <option disabled selected value="">Choose an Ability</option>
+                        </select>
+                        <select class="form-control" name="nature6" id="nature6" style="display:none;" required>
+                            <option disabled selected value="">Choose a Nature</option>
+                        </select>
+                        <select class="form-control" name="item6" id="item6" style="display:none;">
+                            <option disabled selected value="">Choose a Held Item</option>
+                        </select>
+                        <h5 id="move-title6"> Moves </h5>
+                        <select class="form-control" name="move6-1" id="move6-1" style="display:none;" required>
+                            <option disabled selected value="">Choose a Move</option>
+                        </select>
+                        <select class="form-control" name="move6-2" id="move6-2" style="display:none;" required>
+                            <option disabled selected value="">Choose a Move</option>
+                        </select>
+                        <select class="form-control" name="move6-3" id="move6-3" style="display:none;" required>
+                            <option disabled selected value="">Choose a Move</option>
+                        </select>
+                        <select class="form-control" name="move6-4" id="move6-4" style="display:none;" required>
+                            <option disabled selected value="">Choose a Move</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <input class="btn btn-primary" type="submit" value="Create Team">
+        </form>
+    </div>
+{% endblock %}
