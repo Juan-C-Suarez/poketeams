@@ -1,5 +1,24 @@
 {% extends "teambuilder/layout.html" %}
 
-{% block body %}
+{% load static %}
 
+{% block script %}
+     <script src="{% static 'teambuilder/team_list.js' %}"></script>
+     <script src="{% static 'teambuilder/index.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <div>
+        <h4>Build and share your own Pokemon teams!</h4>
+        {% if user.is_authenticated %}
+            <a href="{% url 'teambuilder' %}">Create a team!</a>
+        {% endif %}
+    </div>
+    
+    <select id="order-selector">
+        <option selected value="most-popular">Show me the most popular teams first</option>
+        <option value="newest">Show me the newest teams first</option>
+        <option value="oldest">Show me the oldest teams first</option>
+    </select>
+    <div class="container" id="teams"> </div>
 {% endblock %}

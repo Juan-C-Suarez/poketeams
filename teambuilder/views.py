@@ -1,12 +1,12 @@
 from django.contrib.auth import authenticate, login, logout
-#from django.core.paginator import Paginator
 from django.db import IntegrityError
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
 from django import forms
-#import json
 from .models import User, Pokemon, Team, Team_member, Comment
+from django.db.models import Count
+import json
 
 
 def index(request):
@@ -113,6 +113,72 @@ def teambuilder(request):
         return HttpResponseRedirect(reverse("index"))
 
 
+def teams(request):
+    order = request.GET["order"]
+    start = int(request.GET["start"])
+    end = int(request.GET["end"])
+    
+    if order == "most-popular":
+        orderedTeams = Team.objects.annotate(count=Count('points')).filter(private=False).order_by('-count')
+    elif order == "newest":
+        orderedTeams = Team.objects.filter(private=False).order_by('-timestamp')
+    else:
+        orderedTeams = Team.objects.filter(private=False).order_by('timestamp')
+
+    if request.GET.get("user"):
+        orderedTeams = orderedTeams.filter(user=User.objects.get(id=request.GET["user"]))
+
+    teams = []
+
+    if orderedTeams.count() < end:
+        end = orderedTeams.count()
+
+
+    for i in range(start, end):
+        teams.append(orderedTeams[i])
+
+    teams_data = []
+    for team in teams:
+        pokemon = []
+        username = team.user.username
+        #An attribute that tells if the user has liked this team
+        if team.points.filter(username = request.user.username):
+            liked = True
+        else:
+            liked = False
+        #An attribute that tells the username of the user that created the team
+        team_members = team.members.all()
+        for pkmn in team_members:
+            pokemon.append(pkmn.number)
+        team_data = {
+            "id": team.id,
+            "name": team.name,
+            "points": team.points.count(),
+            "members": pokemon,
+            "liked": liked,
+            "username": username
+        }
+        teams_data.append(team_data)
+
+    return JsonResponse({
+        "teams": teams_data
+    })
+
+
+def like(request):
+    if request.method == 'PUT':
+        user = User.objects.get(username=request.user.get_username())
+        data = json.loads(request.body)
+        team_id = data.get("team_id")
+        team = Team.objects.get(id=team_id)
+        if data.get("like"):
+            user.liked_posts.add(team)
+        else:
+            user.liked_posts.remove(team)
+        user.save()
+        return HttpResponse(status=204)
+
+
 def get_pokemon(number):
     try:
         pokemon = Pokemon.objects.get(number=number)
@@ -120,3 +186,4 @@ def get_pokemon(number):
         pokemon = Pokemon(number=number)
         pokemon.save()
     return pokemon
+

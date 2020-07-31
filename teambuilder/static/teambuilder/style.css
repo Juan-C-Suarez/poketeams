@@ -8,7 +8,7 @@
     margin-top: 10px;
 }
 
-#pkmn1, #pkmn2, #pkmn3, #pkmn4, #pkmn5, #pkmn6{
+#pkmn1, #pkmn2, #pkmn3, #pkmn4, #pkmn5, #pkmn6, .team{
     border: solid;
     border-width: 1px;
     border-color: lightgray;
