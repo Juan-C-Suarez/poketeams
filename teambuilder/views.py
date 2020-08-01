@@ -126,6 +126,8 @@ def teams(request):
 
     if request.GET.get("user"):
         orderedTeams = orderedTeams.filter(user=User.objects.get(id=request.GET["user"]))
+    if request.GET.get("pokemon"):
+        orderedTeams = orderedTeams.filter(members=Pokemon.objects.get(number=request.GET["pokemon"]))
 
     teams = []
 
@@ -220,7 +222,28 @@ def team(request, id):
 
 
 def stats(request):
-    pass
+    pokemon = []
+    orderedPokemon = Pokemon.objects.annotate(team_count=Count('teams')).filter(team_count__gt = 0).order_by('-team_count')
+    for pkmn in orderedPokemon:
+        pokemon.append({
+            "number": pkmn.number,
+            "count": pkmn.team_count
+        })
+    return render(request, "teambuilder/stats.html", {
+            "pokemon": pokemon
+        })
+
+
+def pokemon(request, number):
+    if number in range(1, 807):
+        return render(request, "teambuilder/pokemon.html", {
+            "number": number
+        })
+    else:
+        return render(request, "teambuilder/error.html", {
+            "message": "Pokemon not found."
+        })
+
 
 def get_pokemon(number):
     try:

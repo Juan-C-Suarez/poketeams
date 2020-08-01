@@ -11,5 +11,30 @@
 
 {% block body %}
     <h1> Most Used Pokemon </h1>
-    
+   
+    <div class="input-group mb-3">
+        <select class="form-control" name="pokemon_selector" id="pokemon_selector">
+            <option disabled selected value="">Search for all teams that use a specific Pokemon</option>
+        </select>
+        <div class="input-group-append">
+          <button class="btn btn-primary" id="search-button"> Search </button>
+        </div>
+      </div>
+    <ol>
+        {% for pkmn in pokemon %}
+            <li>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-12">
+                            <a class="name" data-id="{{pkmn.number}}" href="/pokemon/{{pkmn.number}}"></a>
+                            <p> Used in {{pkmn.count}} teams.</p>
+                        </div>
+                        <div class="col-lg-6 col-sm-12">
+                            <img  height="250" width="250" src="https://pokeres.bastionbot.org/images/pokemon/{{pkmn.number}}.png">
+                        </div>
+                    </div>
+                </div>
+            </li>   
+        {% endfor %}
+    </ol>
 {% endblock %}
