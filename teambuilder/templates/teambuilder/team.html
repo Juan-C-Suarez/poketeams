@@ -1,0 +1,43 @@
+{% extends "teambuilder/layout.html" %}
+
+{% load static %}
+
+{% block title %} {{team_data.name}} - Poketeams {% endblock %}
+
+{% block script %}
+    <script src="{% static 'teambuilder/team.js' %}"></script>
+    <script src="{% static 'teambuilder/like.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1> {{team_data.name}} by <a href="/profile/{{team_data.username}}">{{team_data.username}}</a> </h1>
+        <p> Strategy: {{team_data.strategy}} </p>
+        <p class="point-counter" data-count="{{team_data.points}}"> {{team_data.points}} Points</p>
+        <button class="like-button" data-id="{{team_data.id}}" data-liked="{{team_data.liked}}"></button>
+        {% for pokemon in team_data.members %}
+            <div class="row">
+                <div class="col-lg-6 col-sm-12">
+                    <img height="250" width="250" src="https://pokeres.bastionbot.org/images/pokemon/{{pokemon.number}}.png">
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <p class="name" data-id="{{pokemon.number}}"></p>
+                    <ul>
+                        <li> Ability: {{pokemon.ability}} </li>
+                        <li> Nature: {{pokemon.nature}} </li>
+                        <li> Held Item: {{pokemon.held_item}} </li>
+                        <li>
+                            Moves:
+                            <ol>
+                                <li> {{pokemon.move1}} </li>
+                                <li> {{pokemon.move2}} </li>
+                                <li> {{pokemon.move3}} </li>
+                                <li> {{pokemon.move4}} </li>
+                            </ol>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

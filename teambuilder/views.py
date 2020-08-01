@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
 from django import forms
-from .models import User, Pokemon, Team, Team_member, Comment
+from .models import User, Pokemon, Team, Team_member
 from django.db.models import Count
 import json
 
@@ -68,8 +68,11 @@ def logout_view(request):
 def profile(request, username):
     try:
         user = User.objects.get(username=username)
+        points = Team.objects.filter(user=user).aggregate(total_points=Count('points'))
+        print(points)
         return render(request, "teambuilder/profile.html", {
-            "user": user
+            "user": user,
+            "points": points["total_points"]
         })
     except User.DoesNotExist:
         return render(request, "teambuilder/error.html", {
@@ -177,6 +180,47 @@ def like(request):
             user.liked_posts.remove(team)
         user.save()
         return HttpResponse(status=204)
+
+
+def team(request, id):
+    team = Team.objects.get(id = id)
+    if team is None:
+        return render(request, "teambuilder/error.html", {
+            "message": "Team not found."
+        })
+    else:
+        pokemon = []
+        username = team.user.username
+        #An attribute that tells if the user has liked this team
+        if team.points.filter(username = request.user.username):
+            liked = True
+        else:
+            liked = False
+        #An attribute that tells the username of the user that created the team
+        team_members = Team_member.objects.filter(team=team)
+        for pkmn in team_members:
+            pokemon.append({
+                "number": pkmn.pokemon.number,
+                "ability": pkmn.ability.capitalize(),
+                "held_item": pkmn.held_item.capitalize(),
+                "nature": pkmn.nature.capitalize(),
+                "move1": pkmn.move1.capitalize(),
+                "move2": pkmn.move2.capitalize(),
+                "move3": pkmn.move3.capitalize(),
+                "move4": pkmn.move4.capitalize()
+            })
+        team_data = {
+            "id": team.id,
+            "name": team.name,
+            "points": team.points.count(),
+            "strategy": team.strategy,
+            "members": pokemon,
+            "liked": liked,
+            "username": username
+        }
+        return render(request, "teambuilder/team.html", {
+            "team_data": team_data
+        })
 
 
 def get_pokemon(number):

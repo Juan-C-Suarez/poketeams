@@ -9,5 +9,6 @@ urlpatterns = [
     path("profile/<str:username>", views.profile, name="profile"),
     path("build", views.teambuilder, name="teambuilder"),
     path("teams", views.teams, name="teams"),
-    path("like", views.like, name="like")
+    path("like", views.like, name="like"),
+    path("team/<int:id>", views.team, name="team")
 ]

@@ -30,8 +30,3 @@ class Team_member(models.Model):
     move2 = models.CharField(max_length=50)
     move3 = models.CharField(max_length=50)
     move4 = models.CharField(max_length=50)
-
-class Comment(models.Model):
-    id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments")
-    team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="comments")

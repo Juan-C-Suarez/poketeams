@@ -7,12 +7,24 @@
 {% block script %}
     <script src="{% static 'teambuilder/team_list.js' %}"></script>
     <script src="{% static 'teambuilder/profile.js' %}"></script>
+    <script src="{% static 'teambuilder/like.js' %}"></script>
 {% endblock %}
 
 {% block body %}
     <h2 id="username" data-id="{{user.id}}">{{user.username}}</h2>
 
-    <img height="250" width="250" src="https://pokeres.bastionbot.org/images/pokemon/{{user.favorite_pokemon.number}}.png">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-sm-12"> 
+                <img height="250" width="250" src="https://pokeres.bastionbot.org/images/pokemon/{{user.favorite_pokemon.number}}.png">
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <h4> {{points}} Points </h4>
+            </div>
+        </div>
+    </div>
+
+    
 
     <select id="order-selector">
         <option selected value="most-popular">Show me the most popular teams first</option>
