@@ -21,5 +21,5 @@
         <option value="newest">Show me the newest teams first</option>
         <option value="oldest">Show me the oldest teams first</option>
     </select>
-    <div class="container" id="teams"> </div>
+    <div class="container" id="teams" data-authenticated="{{user.is_authenticated}}"> </div>
 {% endblock %}

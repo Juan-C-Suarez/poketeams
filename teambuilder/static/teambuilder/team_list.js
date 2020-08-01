@@ -49,40 +49,42 @@ function add_team(team_data) {
     points.className = 'point-counter';
     points.innerHTML = `${team_data.points} Points`;
     points.dataset.count = team_data.points;
-    const likeButton = document.createElement('button');
-    likeButton.dataset.id = team_data.id;
-    if (team_data.liked) {
-        likeButton.innerHTML = 'Unlike';
-    }
-    else {
-        likeButton.innerHTML = 'Like';
-    }
-    likeButton.addEventListener('click', function () {
-        let team = this.parentElement;
-        if (this.innerHTML === 'Like') {
-            like(this.dataset.id);
-            for (i = 0; i < team.children.length; i++) {
-                if (team.children[i].className === 'point-counter') {
-                    team.children[i].dataset.count++;
-                    team.children[i].innerHTML = `${team.children[i].dataset.count} Points`;
-                }
-            }
-            this.innerHTML = 'Unlike';
-        }
-        else {
-            unlike(this.dataset.id);
-            for (i = 0; i < team.children.length; i++) {
-                if (team.children[i].className === 'point-counter') {
-                    team.children[i].dataset.count--;
-                    team.children[i].innerHTML = `${team.children[i].dataset.count} Points`;
-                }
-            }
-            this.innerHTML = 'Like';
-        }
-    });
     team.append(row);
     team.append(points);
-    team.append(likeButton);
+    if (document.querySelector('#teams').dataset.authenticated === 'True'){
+        const likeButton = document.createElement('button');
+        likeButton.dataset.id = team_data.id;
+        if (team_data.liked) {
+            likeButton.innerHTML = 'Unlike';
+        }
+        else {
+            likeButton.innerHTML = 'Like';
+        }
+        likeButton.addEventListener('click', function () {
+            let team = this.parentElement;
+            if (this.innerHTML === 'Like') {
+                like(this.dataset.id);
+                for (i = 0; i < team.children.length; i++) {
+                    if (team.children[i].className === 'point-counter') {
+                        team.children[i].dataset.count++;
+                        team.children[i].innerHTML = `${team.children[i].dataset.count} Points`;
+                    }
+                }
+                this.innerHTML = 'Unlike';
+            }
+            else {
+                unlike(this.dataset.id);
+                for (i = 0; i < team.children.length; i++) {
+                    if (team.children[i].className === 'point-counter') {
+                        team.children[i].dataset.count--;
+                        team.children[i].innerHTML = `${team.children[i].dataset.count} Points`;
+                    }
+                }
+                this.innerHTML = 'Like';
+            }
+        });
+        team.append(likeButton);
+    }
     teams.append(team);
 }
 

@@ -14,7 +14,6 @@ class Team(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(default=datetime.now, blank=True)
-    private = models.BooleanField(default=False)
     points = models.ManyToManyField(User, related_name="liked_posts")
     name = models.CharField(max_length=50)
     strategy = models.CharField(max_length=1000)

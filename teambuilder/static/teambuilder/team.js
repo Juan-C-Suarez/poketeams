@@ -8,27 +8,28 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
     let button =  document.querySelector('.like-button');
-    console.log(button.dataset.liked);
-    if (button.dataset.liked === 'True') {
-        button.innerHTML = 'Unlike';
-    }
-    else {
-        button.innerHTML = 'Like';
-    }
-    button.addEventListener('click', function() {
-        if (this.innerHTML === 'Like') {
-            like(this.dataset.id);
-            let counter = document.querySelector('.point-counter');
-            counter.dataset.count++;
-            counter.innerHTML = `${counter.dataset.count} Points`;
-            this.innerHTML = 'Unlike';
+    if (button){
+        if (button.dataset.liked === 'True') {
+            button.innerHTML = 'Unlike';
         }
         else {
-            unlike(this.dataset.id);
-            let counter = document.querySelector('.point-counter');
-            counter.dataset.count--;
-            counter.innerHTML = `${counter.dataset.count} Points`;
-            this.innerHTML = 'Like';
+            button.innerHTML = 'Like';
         }
-    })
+        button.addEventListener('click', function() {
+            if (this.innerHTML === 'Like') {
+                like(this.dataset.id);
+                let counter = document.querySelector('.point-counter');
+                counter.dataset.count++;
+                counter.innerHTML = `${counter.dataset.count} Points`;
+                this.innerHTML = 'Unlike';
+            }
+            else {
+                unlike(this.dataset.id);
+                let counter = document.querySelector('.point-counter');
+                counter.dataset.count--;
+                counter.innerHTML = `${counter.dataset.count} Points`;
+                this.innerHTML = 'Like';
+            }
+        })
+    }
 });

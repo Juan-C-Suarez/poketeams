@@ -84,11 +84,7 @@ def teambuilder(request):
     if request.user.is_authenticated:
         if request.method == "POST":
             user = User.objects.get(username=request.user.username)
-            if request.POST.get("private"):
-                private = True
-            else:
-                private = False
-            team = Team(user=user, private=private, name=request.POST["team-name"], strategy=request.POST.get("strategy", ""))
+            team = Team(user=user, name=request.POST["team-name"], strategy=request.POST.get("strategy", ""))
             team.save()
             pokemon1 = get_pokemon(request.POST["species1"])
             pokemon2 = get_pokemon(request.POST["species2"])
@@ -122,11 +118,11 @@ def teams(request):
     end = int(request.GET["end"])
     
     if order == "most-popular":
-        orderedTeams = Team.objects.annotate(count=Count('points')).filter(private=False).order_by('-count')
+        orderedTeams = Team.objects.annotate(count=Count('points')).order_by('-count')
     elif order == "newest":
-        orderedTeams = Team.objects.filter(private=False).order_by('-timestamp')
+        orderedTeams = Team.objects.order_by('-timestamp')
     else:
-        orderedTeams = Team.objects.filter(private=False).order_by('timestamp')
+        orderedTeams = Team.objects.order_by('timestamp')
 
     if request.GET.get("user"):
         orderedTeams = orderedTeams.filter(user=User.objects.get(id=request.GET["user"]))
@@ -222,6 +218,9 @@ def team(request, id):
             "team_data": team_data
         })
 
+
+def stats(request):
+    pass
 
 def get_pokemon(number):
     try:

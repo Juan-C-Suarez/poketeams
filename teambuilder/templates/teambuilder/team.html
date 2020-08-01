@@ -14,7 +14,9 @@
         <h1> {{team_data.name}} by <a href="/profile/{{team_data.username}}">{{team_data.username}}</a> </h1>
         <p> Strategy: {{team_data.strategy}} </p>
         <p class="point-counter" data-count="{{team_data.points}}"> {{team_data.points}} Points</p>
-        <button class="like-button" data-id="{{team_data.id}}" data-liked="{{team_data.liked}}"></button>
+        {% if user.is_authenticated %}
+            <button class="like-button" data-id="{{team_data.id}}" data-liked="{{team_data.liked}}"></button>
+        {% endif %}
         {% for pokemon in team_data.members %}
             <div class="row">
                 <div class="col-lg-6 col-sm-12">
