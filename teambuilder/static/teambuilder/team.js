@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
     let names = document.querySelectorAll('.name').forEach(name => {
-        //Fetch all items for the item selector
         fetch(`https://pokeapi.co/api/v2/pokemon/${name.dataset.id}`)
         .then(response => response.json())
         .then(data => {
@@ -20,13 +19,24 @@ document.addEventListener('DOMContentLoaded', function () {
                 like(this.dataset.id);
                 let counter = document.querySelector('.point-counter');
                 counter.dataset.count++;
-                counter.innerHTML = `${counter.dataset.count} Points`;
+                if(counter.dataset.count === '1'){
+                    counter.innerHTML = '1 Point';
+                }
+                else{
+                    counter.innerHTML = `${counter.dataset.count} Points`;
+                }
                 this.innerHTML = 'Unlike';
             }
             else {
                 unlike(this.dataset.id);
                 let counter = document.querySelector('.point-counter');
                 counter.dataset.count--;
+                if(counter.dataset.count === '1'){
+                    counter.innerHTML = '1 Point';
+                }
+                else{
+                    counter.innerHTML = `${counter.dataset.count} Points`;
+                }
                 counter.innerHTML = `${counter.dataset.count} Points`;
                 this.innerHTML = 'Like';
             }

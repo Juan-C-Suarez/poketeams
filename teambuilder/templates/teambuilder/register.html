@@ -9,10 +9,10 @@
 {% endblock %}
 
 {% block body %}
-    <h2>Register</h2>
+    <h1 class="outer-text">Register</h1>
 
     {% if message %}
-        <div>{{ message }}</div>
+        <p class="outer-text">{{ message }}</p>
     {% endif %}
 
     <form action="{% url 'register' %}" method="post" id="registration-form">
@@ -29,7 +29,7 @@
         <div class="form-group">
             <input class="form-control" type="password" name="confirmation" placeholder="Confirm Password" id="password2-field" required>
         </div>
-        <div> Choose your favorite Pokemon as your avatar! </div>
+        <p class="outer-text"> Choose your favorite Pokemon as your avatar! </p>
         <div class="form-group">
             <select class="form-control" name="fav_pkmn" placeholder="Favorite Pokemon" id="favorite_pokemon" required>
                 <option disabled selected value="">Favorite Pokemon</option>
@@ -37,8 +37,8 @@
         </div>
         <input class="btn btn-primary" type="submit" value="Register">
     </form>
-    <p>
-        Already have an account? <a href="{% url 'login' %}">Log In here.</a>
+    <p class="outer-text">
+        Already have an account? <a href="{% url 'login' %}" class="outer-link">Log In here.</a>
     </p>
 
     <img height="250" width="250" class="selector-image">

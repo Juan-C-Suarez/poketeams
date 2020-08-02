@@ -11,16 +11,23 @@
 
 {% block body %}
     <div class="container">
-        <h1> {{team_data.name}} by <a href="/profile/{{team_data.username}}">{{team_data.username}}</a> </h1>
-        <p> Strategy: {{team_data.strategy}} </p>
-        <p class="point-counter" data-count="{{team_data.points}}"> {{team_data.points}} Points</p>
+        <h1 class="outer-text"> {{team_data.name}}</h1>
+        <h3 class="outer-text">
+            by <a class="outer-text" href="/profile/{{team_data.username}}">{{team_data.username}}</a>
+        </h3>
+        <p class="outer-text strategy"> Strategy: {{team_data.strategy}} </p>
+        {% if team_data.points == 1 %}
+            <p class="point-counter outer-text" data-count="{{team_data.points}}"> 1 Point</p>
+        {% else %}
+            <p class="point-counter outer-text" data-count="{{team_data.points}}"> {{team_data.points}} Points</p>
+        {% endif %}
         {% if user.is_authenticated %}
-            <button class="like-button" data-id="{{team_data.id}}" data-liked="{{team_data.liked}}"></button>
+            <button class="like-button btn btn-primary like-button" data-id="{{team_data.id}}" data-liked="{{team_data.liked}}"></button>
         {% endif %}
         {% for pokemon in team_data.members %}
-            <div class="row">
+            <div class="row pokemon">
                 <div class="col-lg-6 col-sm-12">
-                    <img height="250" width="250" src="https://pokeres.bastionbot.org/images/pokemon/{{pokemon.number}}.png">
+                    <img class="center-image" height="250" width="250" src="https://pokeres.bastionbot.org/images/pokemon/{{pokemon.number}}.png">
                 </div>
                 <div class="col-lg-6 col-sm-12">
                     <a class="name" data-id="{{pokemon.number}}" href="/pokemon/{{pokemon.number}}"></a>

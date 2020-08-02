@@ -10,7 +10,7 @@
 
 {% block body %}
     <div class="container">
-        <h2>Build your team!</h2>
+        <h1 class="outer-text">Build your team!</h1>
 
         <form action="{% url 'teambuilder' %}" method="post" id="teambuilder-form">
             {% csrf_token %}
@@ -21,7 +21,7 @@
             <div class="form-group">
                 <textarea class="form-control" type="text" name="strategy" placeholder="Describe your strategy." id="strategy-field"></textarea>
             </div>
-            <div> Choose the six Pokemon that make up your team. Choose their ability, nature, held item and moves. </div>
+            <p class="outer-text"> Choose the six Pokemon that make up your team. Choose their ability, nature, held item and moves. </p>
             <div id="pkmn1" class="form-group">
                 <select class="form-control" name="species1" id="species1" required>
                     <option disabled selected value="">Choose a Pokemon</option>

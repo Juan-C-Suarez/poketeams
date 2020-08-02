@@ -27,10 +27,11 @@ function add_team(team_data) {
     const teams = document.querySelector('#teams');
     const name = document.createElement('a');
     name.href = `/team/${team_data.id}`;
+    name.className = 'team-name';
     name.innerHTML = team_data.name;
     team.append(name);
     const username = document.createElement('h5');
-    username.innerHTML = `by <a href="/profile/${team_data.username}">${team_data.username}</a>`;
+    username.innerHTML = `by <a href="/profile/${team_data.username}" class="team-user">${team_data.username}</a>`;
     team.append(username);
     const row = document.createElement('div');
     row.className = 'row';
@@ -38,7 +39,7 @@ function add_team(team_data) {
         const pkmn = document.createElement('div');
         pkmn.className = 'col-lg-2 col-sm-12';
         const image = document.createElement('img');
-        image.className = "small-image";
+        image.className = "small-image center-image";
         image.height = 125;
         image.width = 125;
         image.srcset = `https://pokeres.bastionbot.org/images/pokemon/${pokemon}.png`;
@@ -47,13 +48,19 @@ function add_team(team_data) {
     });
     const points = document.createElement('p');
     points.className = 'point-counter';
-    points.innerHTML = `${team_data.points} Points`;
+    if(team_data.points == '1'){
+        points.innerHTML = '1 Point';
+    }
+    else{
+        points.innerHTML = `${team_data.points} Points`;
+    }
     points.dataset.count = team_data.points;
     team.append(row);
     team.append(points);
     if (document.querySelector('#teams').dataset.authenticated === 'True'){
         const likeButton = document.createElement('button');
         likeButton.dataset.id = team_data.id;
+        likeButton.className = 'btn btn-primary like-button';
         if (team_data.liked) {
             likeButton.innerHTML = 'Unlike';
         }
@@ -67,7 +74,12 @@ function add_team(team_data) {
                 for (i = 0; i < team.children.length; i++) {
                     if (team.children[i].className === 'point-counter') {
                         team.children[i].dataset.count++;
-                        team.children[i].innerHTML = `${team.children[i].dataset.count} Points`;
+                        if(team.children[i].dataset.count === '1'){
+                            team.children[i].innerHTML = '1 Point';
+                        }
+                        else{
+                            team.children[i].innerHTML = `${team.children[i].dataset.count} Points`;
+                        }
                     }
                 }
                 this.innerHTML = 'Unlike';
@@ -77,7 +89,12 @@ function add_team(team_data) {
                 for (i = 0; i < team.children.length; i++) {
                     if (team.children[i].className === 'point-counter') {
                         team.children[i].dataset.count--;
-                        team.children[i].innerHTML = `${team.children[i].dataset.count} Points`;
+                        if(team.children[i].dataset.count === '1'){
+                            team.children[i].innerHTML = '1 Point';
+                        }
+                        else{
+                            team.children[i].innerHTML = `${team.children[i].dataset.count} Points`;
+                        }
                     }
                 }
                 this.innerHTML = 'Like';

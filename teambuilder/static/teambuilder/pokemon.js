@@ -18,7 +18,6 @@ function load() {
     fetch(`/teams?order=${orderSelector.value}&start=${start}&end=${end}&pokemon=${id}`)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             data.teams.forEach(add_team);
         });
 }

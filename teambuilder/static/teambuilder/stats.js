@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    let names = document.querySelectorAll('.name').forEach(name => {
-        //Fetch all items for the item selector
+    let names = document.querySelectorAll('.pokemon-name').forEach(name => {
         fetch(`https://pokeapi.co/api/v2/pokemon/${name.dataset.id}`)
         .then(response => response.json())
         .then(data => {

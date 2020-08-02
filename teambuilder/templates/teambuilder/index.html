@@ -9,10 +9,10 @@
 {% endblock %}
 
 {% block body %}
-    <div>
-        <h4>Build and share your own Pokemon teams!</h4>
+    <div id="index-head">
+        <h1 class="outer-text">Build and share your own Pokemon teams!</h1>
         {% if user.is_authenticated %}
-            <a href="{% url 'teambuilder' %}">Create a team!</a>
+            <a href="{% url 'teambuilder' %}" class="build-anchor">Create a team!</a>
         {% endif %}
     </div>
     

@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1> Most Used Pokemon </h1>
+    <h1 class="outer-text"> Top 10 Most Used Pokemon </h1>
    
     <div class="input-group mb-3">
         <select class="form-control" name="pokemon_selector" id="pokemon_selector">
@@ -22,19 +22,20 @@
       </div>
     <ol>
         {% for pkmn in pokemon %}
-            <li>
-                <div class="container">
+            <div class="container pokemon">
+                <li class="listed-pokemon">
                     <div class="row">
-                        <div class="col-lg-6 col-sm-12">
-                            <a class="name" data-id="{{pkmn.number}}" href="/pokemon/{{pkmn.number}}"></a>
+                        <div class="col-lg-2 col-sm-12 pokemon-data">
+                            <a class="pokemon-name" data-id="{{pkmn.number}}" href="/pokemon/{{pkmn.number}}"></a>
                             <p> Used in {{pkmn.count}} teams.</p>
                         </div>
-                        <div class="col-lg-6 col-sm-12">
-                            <img  height="250" width="250" src="https://pokeres.bastionbot.org/images/pokemon/{{pkmn.number}}.png">
+                        <div class="col-lg-10 col-sm-12">
+                            <img  height="250" width="250" class="center-image" src="https://pokeres.bastionbot.org/images/pokemon/{{pkmn.number}}.png">
                         </div>
                     </div>
-                </div>
-            </li>   
+                </li> 
+            </div>
+             
         {% endfor %}
     </ol>
 {% endblock %}

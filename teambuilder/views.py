@@ -71,7 +71,7 @@ def profile(request, username):
         points = Team.objects.filter(user=user).aggregate(total_points=Count('points'))
         print(points)
         return render(request, "teambuilder/profile.html", {
-            "user": user,
+            "profile_user": user,
             "points": points["total_points"]
         })
     except User.DoesNotExist:
@@ -223,7 +223,7 @@ def team(request, id):
 
 def stats(request):
     pokemon = []
-    orderedPokemon = Pokemon.objects.annotate(team_count=Count('teams')).filter(team_count__gt = 0).order_by('-team_count')
+    orderedPokemon = Pokemon.objects.annotate(team_count=Count('teams')).filter(team_count__gt = 0).order_by('-team_count')[:10]
     for pkmn in orderedPokemon:
         pokemon.append({
             "number": pkmn.number,
