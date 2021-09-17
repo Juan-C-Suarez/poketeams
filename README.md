@@ -1,4 +1,4 @@
-# Final Project - Poketeams by Juan Carlos Suárez Jaimes
+# Poketeams by Juan Carlos Suárez Jaimes
 Poketeams is a web application that allows users to build teams for Pokemon games and also 
 view the teams created by other users. This web application uses the API **PokeAPI** for getting
 data about Pokemon, items, moves, etc.
@@ -41,18 +41,6 @@ detailed information about the team and each of its Pokemon. It's also possible 
 the team using this page's like button.
 
 7. **Accounts:** Users can login, register and logout from the website.
-
-## Distinctiveness Requirement
-The web application has some social network elements, but the teambuilder feature and the posibility
-to access statistics about the most used Pokemon and the teams that use them are the web application's
-core features and they make it different enough from the network project.
-
-## Complexity Requirement
-I consider that this project is more complex that the previous projects because it makes extensive
-use of an external API and its models and forms are more complex that those of previous projects.
-The team list feature also required the simultaneous implementation of features like infinite scroll
-and reloading the teams in a different order, which required extensive use of fetch calls and made
-the front-end much more complex.
 
 ## What's contained in each file
 * poketeams: project directory
